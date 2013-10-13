@@ -23,7 +23,7 @@ class Karat:
         thread.start_new_thread(self.getem, ())
         self.sock = socket.socket()
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.sock.bind(("0.0.0.0", data.config['port']))
+        self.sock.bind((data.config['host'], data.config['port']))
         self.sock.listen(5)
         while True:
             obj, ip = self.sock.accept()
