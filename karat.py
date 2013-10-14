@@ -43,11 +43,16 @@ class Karat:
 
     def getem(self):
         while True:
-            if not data.config['db'].find("nodes", "all"):
-                get_nodes_broker.get_nodes()                                                                                                       
-            else:
-                get_nodes.get_nodes()
-            time.sleep(10)
+            try:
+                if not data.config['db'].find("nodes", "all"):
+                    get_nodes_broker.get_nodes()                                                                                                       
+                else:
+                    get_nodes.get_nodes()
+                time.sleep(10)
+            except ValueError:
+                with open("nodes.db", 'wb') as file:
+                    file.write("{}")
+
 if __name__ == "__main__":
     try:
         Karat().main()
