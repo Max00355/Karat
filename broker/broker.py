@@ -37,6 +37,10 @@ class Broker:
     def check(self):
         while True:
             data = self.db.find("nodes", "all")
+            if not data:
+                self.db.insert("nodes", {})
+                self.db.remove("nodes", {})
+                continue
             for x in data:
                 ip = x['ip']
                 port = x['port']
