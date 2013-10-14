@@ -7,7 +7,7 @@ config = {
 "port":3334,
 "relay":True,
 "id":uuid.uuid4().hex,
-"broker":("", 3333),
+"broker":("karat.zapto.org", 3333),
 "db":landerdb.Connect("nodes.db"),
 
 }
