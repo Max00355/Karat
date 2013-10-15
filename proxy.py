@@ -17,6 +17,7 @@ def proxy(obj, data):
     else:
         s.send(json.dumps({"cmd":"proxy", "data":data}))
         data = s.recv(1024000)
+        print data
         obj.send(data)
         obj.close()
         
