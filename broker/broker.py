@@ -10,7 +10,7 @@ class Broker:
         self.sock = socket.socket()
         self.db = landerdb.Connect("nodes.db")
         self.port = 3333
-        self.host = ""
+        self.host = "0.0.0.0"
 
     def main(self):
        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
