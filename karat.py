@@ -36,7 +36,7 @@ class Karat:
         except:
             proxy.proxy(obj, data_)
         else:
-            print ip+": "+str(data_)
+            print ip
             if "cmd" in data_:
                 if data_['cmd'] in self.cmds:
                     self.cmds[data_['cmd']](obj, data_)

@@ -17,14 +17,13 @@ def proxy(obj, data):
     else:
         s.send(json.dumps({"cmd":"proxy", "data":data}))
         data = s.recv(1024000)
-        print data
         obj.send(data)
         obj.close()
         
 
 def proxify(obj, data):
     host = re.findall("Host: (.*)", data['data'])[0]
-    do = doit.doit(host, data['data'])
+    do = doit.doit(host.split()[0], data['data'])
     obj.send(do)
     obj.close()
 
