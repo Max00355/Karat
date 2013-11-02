@@ -6,7 +6,7 @@ import re
 import doit
 
 def proxy(obj, data):
-    
+
     check = db.config['db'].find("nodes", "all") 
     node = random.choice(check)
     s = socket.socket()
@@ -24,6 +24,9 @@ def proxy(obj, data):
 def proxify(obj, data):
     host = re.findall("Host: (.*)", data['data'])[0]
     do = doit.doit(host.split()[0], data['data'])
+    header = "HTTP/1.0 200 OK\r\nServer: Karat\r\nContent-type: text/html\r\n\r\n"
+    if "200 OK" in do:
+        do = header + do 
     obj.send(do)
     obj.close()
 
